@@ -1,0 +1,57 @@
+<div class="row">
+<div class="col-lg-10">
+    <div>
+        <form id="add" ng-show="addFormShow">
+                <h3>Create New Data</h3>
+            <div class="row">
+            <div class="col-lg-2">Name:</div><div class="col-lg-4"><input ng-model="name" placeholder="name"></div>
+            <div class="col-lg-2">Company: </div><div class="col-lg-4"><input ng-model="company" placeholder="company" ></div>
+                <div class="col-lg-2">Email: </div><div class="col-lg-4"><input type="email" ng-model="email" placeholder="email" ></div>
+                <div class="col-lg-2">HomeAddress: </div><div class="col-lg-4"><input ng-model="hAddress" placeholder="home address"></div>
+                <div class="col-lg-2">Home Phone: </div><div class="col-lg-4"><input ng-model="hPhone" placeholder="home phone"></div>
+                <div class="col-lg-2">Mobile Phone: </div><div class="col-lg-4"><input ng-model="mPhone" placeholder="mobile phone"></div>
+                <input type="submit" ng-click="addData()" class="btn btn-primary">
+                <button ng-click="cancel()" class="btn btn-danger">Cancel</button>
+            </div>
+        </form>
+        <form id="edit" ng-show="editFormShow">
+                <h3>Edit Existing Data</h3>
+                 <div class="row">
+                <div class="col-lg-2">Name:</div><div class="col-lg-4"><input ng-model="name" placeholder={{editData.name}}></div>
+                <div class="col-lg-2">Company: </div><div class="col-lg-4"><input ng-model="company" placeholder={{editData.company}}></div>
+                <div class="col-lg-2">Email: </div><div class="col-lg-4"><input type="email" ng-model="email" placeholder={{editData.email}} ></div>
+                <div class="col-lg-2">HomeAddress: </div><div class="col-lg-4"><input ng-model="hAddress" placeholder={{editData.homeAddress}}></div>
+                <div class="col-lg-2">Home Phone: </div><div class="col-lg-4"><input ng-model="hPhone" placeholder={{editData.homePhone}} ></div>
+                <div class="col-lg-2">Mobile Phone: </div><div class="col-lg-4"><input ng-model="mPhone" placeholder={{editData.mobilePhone}}></div>
+                <button ng-click="collapse()" class="btn btn-danger">Cancel</button>
+                <input type="submit" class="btn btn-primary" ng-click="editSubmit()">
+                </div>
+
+        </form>
+    </div>
+    <h3>Your Contacts ({{contacts.length}})</h3><span><input ng-model="search.$" placeholder="Search Contacts"></span>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th width="20%">Name</th>
+                <th width="20%">Company</th>
+                <th width="20%">Email</th>
+                <th width="20%">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="contact in contacts | filter: search">
+                <td><a ng-click="showData($index)">{{contact.name}}</a></td>
+                <td>{{contact.company}}</td>
+                <td>{{contact.email}}</td>
+                <td><a ng-click="showData($index)" class="btn btn-primary">Edit</a> <a ng-click="deleteData($index)" class="btn btn-danger">Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <p id='demo'></p>
+</div>
+<div class="col-lg-2">
+    <a ng-click="addForm()" class="btn btn-success" ng-hide="addFormShow">+</a>
+    <a ng-click="collapseForm()" class="btn btn-success" ng-show="addFormShow">-</a>
+</div>
+</div>
